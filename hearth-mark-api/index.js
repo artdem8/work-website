@@ -2,13 +2,17 @@ import express from 'express';
 import cors from 'cors';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import 'dotenv/config';
 import { pool } from './db.js';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const app = express();
 app.use(cors({ origin: process.env.CORS_ORIGIN || '*' }));
 app.use(express.json());
-app.use(express.static('public')); // Change 'public' to your actual frontend folder name if it's different (e.g., 'dist', 'build')
+app.use(express.static(path.join(__dirname, '..')));
 
 const JWT_SECRET = process.env.JWT_SECRET;
 if (!JWT_SECRET) {
