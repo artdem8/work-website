@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hearth & Mark — Candles, Wooden Clocks & Engraved Frames</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#241811;
+    --wood:#3c2a1d;
+    --wood-light:#5a4230;
+    --paper:#f6efe1;
+    --paper-2:#efe4cf;
+    --wax:#c8712d;
+    --wax-dark:#a4571d;
+    --brass:#8a6d3b;
+    --ember:#9c3b2a;
+    --line:rgba(36,24,17,0.14);
+    --shadow:0 10px 30px rgba(36,24,17,0.12);
+    --radius:14px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Work Sans', sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.5;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;}
+  button{font-family:inherit;cursor:pointer;}
+  img,svg{display:block;}
+  .container{max-width:1180px;margin:0 auto;padding:0 28px;}
+
+  /* ---------- NAV ---------- */
+  header.site{
+    position:sticky;top:0;z-index:50;
+    background:rgba(246,239,225,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 28px;max-width:1180px;margin:0 auto;
+  }
+  .brand{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-size:1.35rem;font-weight:700;}
+  .seal{width:38px;height:38px;flex:none;}
+  .navlinks{display:flex;align-items:center;gap:28px;font-size:0.95rem;font-weight:500;}
+  .navlinks a{text-decoration:none;opacity:0.82;transition:opacity .15s;}
+  .navlinks a:hover{opacity:1;}
+  .nav-actions{display:flex;align-items:center;gap:14px;}
+  .icon-btn{
+    background:none;border:1px solid var(--line);border-radius:999px;
+    width:40px;height:40px;display:flex;align-items:center;justify-content:center;
+    position:relative;transition:background .15s, border-color .15s;
+  }
+  .icon-btn:hover{background:var(--paper-2);border-color:var(--brass);}
+  .badge{
+    position:absolute;top:-6px;right:-6px;background:var(--ember);color:#fff;
+    font-size:0.65rem;min-width:17px;height:17px;border-radius:999px;
+    display:flex;align-items:center;justify-content:center;padding:0 4px;font-weight:600;
+  }
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    padding:11px 20px;border-radius:999px;border:1px solid transparent;
+    font-weight:600;font-size:0.92rem;transition:transform .15s, box-shadow .15s, background .15s;
+  }
+  .btn-primary{background:var(--wax);color:#fff;}
+  .btn-primary:hover{background:var(--wax-dark);}
+  .btn-ghost{background:transparent;border-color:var(--line);color:var(--ink);}
+  .btn-ghost:hover{border-color:var(--brass);}
+  .btn-small{padding:7px 14px;font-size:0.82rem;}
+  .btn-danger{background:transparent;color:var(--ember);border:1px solid var(--ember);}
+  .btn-danger:hover{background:var(--ember);color:#fff;}
+  .pill{font-size:0.72rem;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;
+    background:var(--paper-2);border:1px solid var(--line);border-radius:999px;padding:4px 10px;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;overflow:hidden;
+    background:
+      radial-gradient(ellipse at 20% 20%, rgba(200,113,45,0.16), transparent 55%),
+      linear-gradient(180deg, var(--paper) 0%, var(--paper) 100%);
+    border-bottom:1px solid var(--line);
+  }
+  .hero-inner{
+    max-width:1180px;margin:0 auto;padding:88px 28px 70px;
+    display:grid;grid-template-columns:1.1fr 0.9fr;gap:48px;align-items:center;
+  }
+  .eyebrow{font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--wax-dark);font-weight:600;margin-bottom:16px;}
+  .hero h1{font-size:clamp(2.4rem, 4.2vw, 3.6rem);line-height:1.04;margin:0 0 20px;}
+  .hero p.lead{font-size:1.08rem;color:var(--wood-light);max-width:46ch;margin:0 0 30px;}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
+  .flame-wrap{display:flex;align-items:center;justify-content:center;}
+  .candle-scene{width:100%;max-width:340px;}
+  @keyframes flicker{
+    0%,100%{ transform:scaleY(1) translateX(0) rotate(0deg); opacity:1;}
+    20%{ transform:scaleY(1.05) translateX(1px) rotate(-1deg); opacity:0.96;}
+    45%{ transform:scaleY(0.94) translateX(-1px) rotate(1.5deg); opacity:1;}
+    70%{ transform:scaleY(1.08) translateX(0.5px) rotate(-0.5deg); opacity:0.97;}
+  }
+  .flame{transform-origin:bottom center;animation:flicker 2.6s ease-in-out infinite;}
+
+  /* ---------- SECTION HEADERS ---------- */
+  .section{padding:74px 0;}
+  .section-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:36px;gap:20px;flex-wrap:wrap;}
+  .section-head h2{font-size:2rem;margin:0 0 8px;}
+  .section-head p{margin:0;color:var(--wood-light);max-width:52ch;}
+
+  /* ---------- CATEGORIES ---------- */
+  .cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .cat-card{
+    position:relative;border-radius:var(--radius);padding:30px 26px;min-height:230px;
+    border:1px solid var(--line);background:var(--paper);overflow:hidden;
+    display:flex;flex-direction:column;justify-content:flex-end;
+    cursor:pointer;transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .cat-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);}
+  .cat-card .cat-icon{position:absolute;top:22px;right:22px;width:46px;height:46px;opacity:0.9;}
+  .cat-card h3{margin:0 0 6px;font-size:1.3rem;}
+  .cat-card span.count{color:var(--wood-light);font-size:0.86rem;}
+  .cat-card .engrave-line{
+    position:absolute;left:0;bottom:0;height:3px;width:100%;background:var(--wax);
+    stroke-dasharray:0;
+  }
+  .cat-card svg.underline{position:absolute;left:26px;bottom:20px;width:calc(100% - 52px);height:6px;}
+  .cat-card svg.underline path{
+    stroke:var(--wax);stroke-width:2;fill:none;
+    stroke-dasharray:240;stroke-dashoffset:240;transition:stroke-dashoffset .5s ease;
+  }
+  .cat-card:hover svg.underline path{stroke-dashoffset:0;}
+  .cat-card.candles{background:linear-gradient(160deg,#f8ecd8,var(--paper) 60%);}
+  .cat-card.clocks{background:linear-gradient(160deg,#efe6d3,var(--paper) 60%);}
+  .cat-card.frames{background:linear-gradient(160deg,#f2e7d4,var(--paper) 60%);}
+
+  /* ---------- SHOP ---------- */
+  .filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:30px;}
+  .filter-btn{
+    padding:9px 16px;border-radius:999px;border:1px solid var(--line);background:var(--paper);
+    font-size:0.85rem;font-weight:600;color:var(--wood-light);transition:all .15s;
+  }
+  .filter-btn.active,.filter-btn:hover{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+
+  .product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:22px;}
+  .product-card{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .2s, transform .2s;
+  }
+  .product-card:hover{box-shadow:var(--shadow);transform:translateY(-3px);}
+  .product-media{
+    height:150px;display:flex;align-items:center;justify-content:center;position:relative;
+    background:linear-gradient(160deg,var(--paper-2),var(--paper));
+  }
+  .product-media svg{width:58px;height:58px;color:var(--wax-dark);}
+  .discount-flag{
+    position:absolute;top:10px;left:10px;background:var(--ember);color:#fff;
+    font-size:0.72rem;font-weight:700;padding:4px 9px;border-radius:6px;
+  }
+  .stock-flag{position:absolute;top:10px;right:10px;background:rgba(36,24,17,0.75);color:#fff;
+    font-size:0.68rem;font-weight:600;padding:4px 8px;border-radius:6px;}
+  .product-body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1;}
+  .product-cat{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--brass);font-weight:700;}
+  .product-name{font-family:'Fraunces',serif;font-size:1.08rem;font-weight:600;margin:0;}
+  .product-desc{font-size:0.85rem;color:var(--wood-light);margin:0;flex:1;}
+  .price-row{display:flex;align-items:baseline;gap:8px;}
+  .price-now{font-weight:700;font-size:1.05rem;}
+  .price-was{text-decoration:line-through;color:#9b8b78;font-size:0.88rem;}
+  .personalise-note{font-size:0.78rem;color:var(--wax-dark);font-weight:600;}
+  .product-actions{display:flex;gap:8px;margin-top:6px;}
+  .product-actions .btn{flex:1;}
+  .admin-row{display:flex;gap:8px;margin-top:4px;}
+  .empty-note{grid-column:1/-1;text-align:center;padding:40px;color:var(--wood-light);border:1px dashed var(--line);border-radius:var(--radius);}
+
+  /* ---------- ACCOUNT AREA / ADMIN ---------- */
+  .account-strip{display:flex;align-items:center;gap:10px;font-size:0.88rem;}
+  .avatar{
+    width:34px;height:34px;border-radius:999px;background:var(--wood);color:var(--paper);
+    display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.85rem;
+  }
+
+  .admin-panel{background:var(--wood);color:var(--paper);border-radius:20px;padding:40px;margin-top:10px;}
+  .admin-panel .section-head p{color:#d8c8ae;}
+  .admin-panel .section-head h2{color:var(--paper);}
+  .admin-toolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:12px;}
+  .admin-table-wrap{overflow-x:auto;border-radius:12px;border:1px solid rgba(246,239,225,0.18);}
+  table.admin-table{width:100%;border-collapse:collapse;font-size:0.88rem;min-width:760px;}
+  table.admin-table th{
+    text-align:left;padding:12px 14px;background:rgba(246,239,225,0.08);
+    font-weight:600;letter-spacing:0.02em;text-transform:uppercase;font-size:0.72rem;color:#d8c8ae;
+  }
+  table.admin-table td{padding:12px 14px;border-top:1px solid rgba(246,239,225,0.12);vertical-align:middle;}
+  table.admin-table tr:hover td{background:rgba(246,239,225,0.05);}
+  .mini-tag{display:inline-block;padding:2px 8px;border-radius:6px;font-size:0.72rem;font-weight:600;background:rgba(200,113,45,0.25);color:#f3c893;}
+
+  /* ---------- ADMIN TABS ---------- */
+  .admin-tabs{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap;}
+  .admin-tab-btn{
+    padding:9px 18px;border-radius:999px;border:1px solid rgba(246,239,225,0.25);background:transparent;
+    color:#d8c8ae;font-size:0.85rem;font-weight:600;transition:all .15s;display:flex;align-items:center;gap:8px;
+  }
+  .admin-tab-btn.active,.admin-tab-btn:hover{background:var(--wax);color:#fff;border-color:var(--wax);}
+  .admin-tab-badge{background:var(--ember);color:#fff;border-radius:999px;padding:1px 7px;font-size:0.7rem;}
+  .admin-tab-panel{display:none;}
+  .admin-tab-panel.active{display:block;}
+  select.status-select{
+    background:rgba(246,239,225,0.1);color:var(--paper);border:1px solid rgba(246,239,225,0.25);
+    border-radius:7px;padding:6px 8px;font-size:0.82rem;font-family:inherit;
+  }
+  select.status-select option{color:var(--ink);}
+  .order-addr{font-size:0.8rem;color:#d8c8ae;max-width:220px;}
+  .order-items-list{font-size:0.8rem;color:#d8c8ae;max-width:240px;}
+
+  /* ---------- MESSAGES ---------- */
+  .thread-list{display:flex;flex-direction:column;gap:2px;border-radius:12px;overflow:hidden;border:1px solid rgba(246,239,225,0.18);}
+  .thread-row{
+    display:flex;justify-content:space-between;align-items:center;padding:12px 14px;
+    background:rgba(246,239,225,0.04);cursor:pointer;transition:background .15s;
+  }
+  .thread-row:hover,.thread-row.active{background:rgba(200,113,45,0.18);}
+  .thread-row .t-name{font-weight:600;}
+  .thread-row .t-preview{font-size:0.78rem;color:#c9b691;max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .msg-bubble{max-width:78%;padding:10px 14px;border-radius:14px;margin-bottom:10px;font-size:0.88rem;line-height:1.4;}
+  .msg-bubble .m-meta{font-size:0.68rem;opacity:0.65;margin-top:4px;}
+  .msg-from-customer{background:var(--paper-2);color:var(--ink);border-bottom-left-radius:3px;margin-right:auto;}
+  .msg-from-admin{background:var(--wax);color:#fff;border-bottom-right-radius:3px;margin-left:auto;}
+  .msg-thread-wrap{display:flex;flex-direction:column;max-height:340px;overflow-y:auto;padding:6px 2px;margin-bottom:14px;}
+  .msg-empty{text-align:center;color:var(--wood-light);padding:30px 0;font-size:0.88rem;}
+  .msg-send-row{display:flex;gap:8px;}
+  .msg-send-row textarea{flex:1;min-height:44px;resize:none;}
+
+  /* ---------- MODALS ---------- */
+  .overlay{
+    position:fixed;inset:0;background:rgba(36,24,17,0.55);display:none;
+    align-items:center;justify-content:center;z-index:100;padding:20px;
+  }
+  .overlay.open{display:flex;}
+  .modal{
+    background:#fff;border-radius:18px;padding:34px;max-width:460px;width:100%;
+    max-height:88vh;overflow-y:auto;position:relative;box-shadow:0 30px 60px rgba(0,0,0,0.25);
+  }
+  .modal.wide{max-width:680px;}
+  .modal-close{
+    position:absolute;top:18px;right:18px;background:none;border:none;font-size:1.3rem;color:var(--wood-light);
+    width:32px;height:32px;border-radius:999px;display:flex;align-items:center;justify-content:center;
+  }
+  .modal-close:hover{background:var(--paper-2);}
+  .modal h3{margin:0 0 6px;font-size:1.5rem;}
+  .modal .sub{color:var(--wood-light);font-size:0.9rem;margin:0 0 24px;}
+  .field{margin-bottom:16px;}
+  .field label{display:block;font-size:0.82rem;font-weight:600;margin-bottom:6px;}
+  .field .hint{font-weight:400;color:var(--wood-light);font-size:0.76rem;}
+  .field input[type=text],
+  .field input[type=password],
+  .field input[type=number],
+  .field input[type=tel],
+  .field select,
+  .field textarea{
+    width:100%;padding:11px 13px;border-radius:9px;border:1px solid var(--line);
+    background:var(--paper);font-family:inherit;font-size:0.92rem;color:var(--ink);
+  }
+  .field textarea{resize:vertical;min-height:70px;}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:2px solid var(--wax);outline-offset:1px;}
+  .checkbox-row{display:flex;align-items:center;gap:8px;font-size:0.9rem;font-weight:500;}
+  .form-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .form-note{
+    background:var(--paper-2);border:1px solid var(--line);border-radius:10px;
+    padding:12px 14px;font-size:0.8rem;color:var(--wood-light);margin-bottom:18px;
+  }
+  .modal-switch{text-align:center;font-size:0.86rem;margin-top:6px;color:var(--wood-light);}
+  .modal-switch button{background:none;border:none;color:var(--wax-dark);font-weight:700;text-decoration:underline;}
+  .error-text{color:var(--ember);font-size:0.82rem;margin:-8px 0 14px;display:none;}
+  .error-text.show{display:block;}
+
+  /* cart */
+  .cart-item{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--line);}
+  .cart-item .thumb{width:56px;height:56px;border-radius:9px;background:var(--paper-2);display:flex;align-items:center;justify-content:center;flex:none;}
+  .cart-item .thumb svg{width:28px;height:28px;color:var(--wax-dark);}
+  .cart-item .ci-body{flex:1;}
+  .cart-item .ci-name{font-weight:600;font-size:0.94rem;}
+  .cart-item .ci-line{font-size:0.8rem;color:var(--wood-light);}
+  .cart-total{display:flex;justify-content:space-between;font-weight:700;font-size:1.05rem;padding-top:16px;}
+  .cart-empty{text-align:center;padding:30px 0;color:var(--wood-light);}
+  .qty-controls{display:flex;align-items:center;gap:8px;margin-top:6px;}
+  .qty-controls button{width:24px;height:24px;border-radius:6px;border:1px solid var(--line);background:var(--paper);font-weight:700;}
+  .remove-link{background:none;border:none;color:var(--ember);font-size:0.78rem;text-decoration:underline;margin-top:6px;}
+
+  footer.site{border-top:1px solid var(--line);padding:40px 0;margin-top:20px;}
+  .footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;font-size:0.85rem;color:var(--wood-light);}
+
+  .toast{
+    position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);
+    background:var(--ink);color:var(--paper);padding:14px 22px;border-radius:999px;
+    font-size:0.88rem;font-weight:600;opacity:0;pointer-events:none;transition:all .25s ease;z-index:200;
+    box-shadow:0 10px 24px rgba(0,0,0,0.25);
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+  @media (max-width:860px){
+    .hero-inner{grid-template-columns:1fr;padding-top:56px;}
+    .cat-grid{grid-template-columns:1fr;}
+    .navlinks{display:none;}
+    .form-grid-2{grid-template-columns:1fr;}
+  }
+  :focus-visible{outline:2px solid var(--wax);outline-offset:2px;}
+  @media (prefers-reduced-motion: reduce){
+    .flame{animation:none;}
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="nav">
+    <div class="brand">
+      <svg class="seal" viewBox="0 0 48 48" fill="none">
+        <circle cx="24" cy="24" r="22" fill="var(--wax)"/>
+        <circle cx="24" cy="24" r="22" stroke="var(--wax-dark)" stroke-width="1.5"/>
+        <path d="M14 27c2-6 5-9 10-9s8 3 10 9" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <circle cx="24" cy="16" r="2.4" fill="#fff"/>
+      </svg>
+      Hearth &amp; Mark
+    </div>
+    <nav class="navlinks">
+      <a href="#categories">Categories</a>
+      <a href="#shop">Shop All</a>
+      <a href="#" onclick="showSection('candles');return false;">Candles</a>
+      <a href="#" onclick="showSection('clocks');return false;">Wooden Clocks</a>
+      <a href="#" onclick="showSection('frames');return false;">Engraved Frames</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" title="Messages" id="messagesIconBtn" style="display:none;" onclick="openMessages()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <span class="badge" id="messagesBadge" style="display:none;">0</span>
+      </button>
+      <button class="icon-btn" title="Cart" onclick="openModal('cartModal')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+        <span class="badge" id="cartBadge" style="display:none;">0</span>
+      </button>
+      <div id="accountArea"></div>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="eyebrow">Made to be kept, not just used</div>
+      <h1>Warm light, honest wood,<br>a name worth engraving.</h1>
+      <p class="lead">Hand-poured candles, solid wooden clocks and personalised engraved frames — every piece made to order, from a small workshop to your home.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" onclick="document.getElementById('shop').scrollIntoView()">Shop the collection</button>
+        <button class="btn btn-ghost" onclick="document.getElementById('categories').scrollIntoView()">Browse categories</button>
+      </div>
+    </div>
+    <div class="flame-wrap">
+      <svg class="candle-scene" viewBox="0 0 300 320" fill="none">
+        <ellipse cx="150" cy="300" rx="90" ry="10" fill="rgba(36,24,17,0.08)"/>
+        <rect x="115" y="120" width="70" height="170" rx="6" fill="#e9dcc3" stroke="#c9b691" stroke-width="1.5"/>
+        <rect x="115" y="120" width="70" height="18" fill="#ddc9a0"/>
+        <rect x="147" y="95" width="6" height="30" fill="#8a6d3b"/>
+        <g class="flame">
+          <path d="M150 40c10 14 18 24 18 38a18 18 0 1 1-36 0c0-14 8-24 18-38z" fill="var(--wax)"/>
+          <path d="M150 62c5 8 9 13 9 21a9 9 0 1 1-18 0c0-8 4-13 9-21z" fill="#ffd98a"/>
+        </g>
+        <rect x="60" y="230" width="180" height="60" rx="10" fill="#c9713a" opacity="0.14"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+
+  <section class="section" id="categories">
+    <div class="section-head">
+      <div>
+        <h2>Shop by category</h2>
+        <p>Three collections, each made the same careful way.</p>
+      </div>
+    </div>
+    <div class="cat-grid">
+      <div class="cat-card candles" onclick="showSection('candles')">
+        <svg class="cat-icon" viewBox="0 0 24 24" fill="none" stroke="var(--wax-dark)" stroke-width="1.6"><path d="M12 2c1.5 2 3 3.6 3 6a3 3 0 1 1-6 0c0-2.4 1.5-4 3-6z"/><rect x="9" y="10" width="6" height="10" rx="1"/></svg>
+        <h3>Candles</h3>
+        <span class="count" id="countCandles">0 pieces</span>
+        <svg class="underline" viewBox="0 0 220 6"><path d="M2 3h216"/></svg>
+      </div>
+      <div class="cat-card clocks" onclick="showSection('clocks')">
+        <svg class="cat-icon" viewBox="0 0 24 24" fill="none" stroke="var(--brass)" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        <h3>Wooden Clocks</h3>
+        <span class="count" id="countClocks">0 pieces</span>
+        <svg class="underline" viewBox="0 0 220 6"><path d="M2 3h216"/></svg>
+      </div>
+      <div class="cat-card frames" onclick="showSection('frames')">
+        <svg class="cat-icon" viewBox="0 0 24 24" fill="none" stroke="var(--ember)" stroke-width="1.6"><rect x="4" y="4" width="16" height="16" rx="1.5"/><rect x="8" y="8" width="8" height="8" rx="1"/></svg>
+        <h3>Personalised Engraved Frames</h3>
+        <span class="count" id="countFrames">0 pieces</span>
+        <svg class="underline" viewBox="0 0 220 6"><path d="M2 3h216"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="shop">
+    <div class="section-head">
+      <div>
+        <h2>Shop all</h2>
+        <p>Filter by category. Anything marked "personalise" can be engraved with your own wording at checkout.</p>
+      </div>
+    </div>
+    <div class="filters" id="filterBar"></div>
+    <div class="product-grid" id="productGrid"></div>
+  </section>
+
+  <section class="section" id="adminSection" style="display:none;">
+    <div class="admin-panel">
+      <div class="section-head">
+        <div>
+          <h2>Admin dashboard</h2>
+          <p>Manage listings, track orders, and reply to customer messages. Visible only to the admin account.</p>
+        </div>
+        <button class="btn btn-primary" id="adminNewListingBtn" onclick="openProductForm()">+ New listing</button>
+      </div>
+
+      <div class="admin-tabs">
+        <button class="admin-tab-btn active" data-tab="listings" onclick="switchAdminTab('listings')">Listings</button>
+        <button class="admin-tab-btn" data-tab="orders" onclick="switchAdminTab('orders')">Orders <span class="admin-tab-badge" id="ordersTabBadge" style="display:none;">0</span></button>
+        <button class="admin-tab-btn" data-tab="messages" onclick="switchAdminTab('messages')">Messages <span class="admin-tab-badge" id="messagesTabBadge" style="display:none;">0</span></button>
+      </div>
+
+      <!-- LISTINGS TAB -->
+      <div class="admin-tab-panel active" id="adminTabListings">
+        <div class="admin-toolbar">
+          <span class="pill" id="adminProductCount">0 listings</span>
+        </div>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr><th>Name</th><th>Category</th><th>Price</th><th>Discount</th><th>Personalisation</th><th>Stock</th><th></th></tr>
+            </thead>
+            <tbody id="adminTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ORDERS TAB -->
+      <div class="admin-tab-panel" id="adminTabOrders">
+        <div class="admin-toolbar">
+          <span class="pill" id="adminOrderCount">0 orders</span>
+          <span style="font-size:0.8rem;color:#c9b691;">Stored on this device only — see note below.</span>
+        </div>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr><th>Order</th><th>Customer</th><th>Items</th><th>Deliver to</th><th>Total</th><th>Placed</th><th>Status</th></tr>
+            </thead>
+            <tbody id="adminOrdersBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- MESSAGES TAB -->
+      <div class="admin-tab-panel" id="adminTabMessages">
+        <div class="admin-toolbar">
+          <span class="pill" id="adminThreadCount">0 conversations</span>
+        </div>
+        <div style="display:grid;grid-template-columns:260px 1fr;gap:18px;align-items:start;">
+          <div class="thread-list" id="adminThreadList"></div>
+          <div>
+            <div id="adminThreadHeader" style="font-weight:600;margin-bottom:10px;color:var(--paper);">Select a conversation</div>
+            <div class="msg-thread-wrap" id="adminThreadMessages"></div>
+            <div class="msg-send-row" id="adminReplyRow" style="display:none;">
+              <textarea id="adminReplyText" placeholder="Write a reply…"></textarea>
+              <button class="btn btn-primary btn-small" onclick="sendAdminReply()">Send</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="site">
+  <div class="container footer-inner">
+    <span>&copy; <span id="year"></span> Hearth &amp; Mark Workshop — made to order.</span>
+    <span>Demo storefront — accounts, orders and messages are stored on this device/browser only, not on a server.</span>
+  </div>
+</footer>
+
+<!-- LOGIN MODAL -->
+<div class="overlay" id="loginOverlay">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('loginOverlay')">&times;</button>
+    <h3>Welcome back</h3>
+    <p class="sub">Log in to your Hearth &amp; Mark account.</p>
+    <div class="error-text" id="loginError"></div>
+    <form onsubmit="return handleLogin(event)">
+      <div class="field">
+        <label>Username</label>
+        <input type="text" id="loginUsername" autocomplete="username" required>
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <input type="password" id="loginPassword" autocomplete="current-password" required>
+      </div>
+      <button class="btn btn-primary" type="submit" style="width:100%;">Log in</button>
+    </form>
+    <p class="modal-switch">New here? <button onclick="switchModal('loginOverlay','signupOverlay')">Create an account</button></p>
+  </div>
+</div>
+
+<!-- SIGNUP MODAL -->
+<div class="overlay" id="signupOverlay">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('signupOverlay')">&times;</button>
+    <h3>Create your account</h3>
+    <p class="sub">A work account for placing and tracking orders. Your details stay on this device — see note below.</p>
+    <div class="error-text" id="signupError"></div>
+    <form onsubmit="return handleSignup(event)">
+      <div class="field">
+        <label>Full name</label>
+        <input type="text" id="signupName" required>
+      </div>
+      <div class="field">
+        <label>Username</label>
+        <input type="text" id="signupUsername" required>
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <input type="password" id="signupPassword" required minlength="3">
+      </div>
+      <div class="field">
+        <label class="checkbox-row"><input type="checkbox" id="signupWorkConfirm" required> This is a work account and I've entered my real name for order records.</label>
+      </div>
+      <div class="form-note">Accounts on this demo site are stored locally in your browser (not sent to a server). Don't reuse a password you use elsewhere.</div>
+      <button class="btn btn-primary" type="submit" style="width:100%;">Create account</button>
+    </form>
+    <p class="modal-switch">Already have an account? <button onclick="switchModal('signupOverlay','loginOverlay')">Log in</button></p>
+  </div>
+</div>
+
+<!-- CART MODAL -->
+<div class="overlay" id="cartOverlay">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('cartOverlay')">&times;</button>
+    <h3>Your basket</h3>
+    <p class="sub">Review your items before checkout.</p>
+    <div id="cartItems"></div>
+    <div class="cart-total"><span>Total</span><span id="cartTotal">£0.00</span></div>
+    <button class="btn btn-primary" style="width:100%;margin-top:16px;" onclick="startCheckout()">Place order</button>
+  </div>
+</div>
+
+<!-- PERSONALISE / ADD TO CART MODAL -->
+<div class="overlay" id="addOverlay">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('addOverlay')">&times;</button>
+    <h3 id="addTitle">Add to basket</h3>
+    <p class="sub" id="addSub"></p>
+    <div id="addPersonaliseFields"></div>
+    <div class="field">
+      <label>Quantity</label>
+      <input type="number" id="addQty" value="1" min="1">
+    </div>
+    <button class="btn btn-primary" style="width:100%;" onclick="confirmAddToCart()">Add to basket</button>
+  </div>
+</div>
+
+<!-- DELIVERY DETAILS / CHECKOUT MODAL -->
+<div class="overlay" id="deliveryOverlay">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('deliveryOverlay')">&times;</button>
+    <h3>Delivery details</h3>
+    <p class="sub">Where should we send your order? This is a demo checkout — no payment is taken.</p>
+    <div class="error-text" id="deliveryError"></div>
+    <form onsubmit="return submitDelivery(event)">
+      <div class="field">
+        <label>Full name</label>
+        <input type="text" id="delName" required>
+      </div>
+      <div class="field">
+        <label>Address line 1</label>
+        <input type="text" id="delAddr1" required>
+      </div>
+      <div class="field">
+        <label>Address line 2 <span class="hint">(optional)</span></label>
+        <input type="text" id="delAddr2">
+      </div>
+      <div class="form-grid-2">
+        <div class="field">
+          <label>City / Town</label>
+          <input type="text" id="delCity" required>
+        </div>
+        <div class="field">
+          <label>Postcode</label>
+          <input type="text" id="delPostcode" required>
+        </div>
+      </div>
+      <div class="form-grid-2">
+        <div class="field">
+          <label>Country</label>
+          <input type="text" id="delCountry" required>
+        </div>
+        <div class="field">
+          <label>Phone <span class="hint">(optional)</span></label>
+          <input type="tel" id="delPhone">
+        </div>
+      </div>
+      <div class="field">
+        <label>Delivery notes <span class="hint">(optional)</span></label>
+        <textarea id="delNotes" placeholder="e.g. leave with a neighbour, gate code, etc."></textarea>
+      </div>
+      <button class="btn btn-primary" type="submit" style="width:100%;">Confirm order</button>
+    </form>
+  </div>
+</div>
+
+<!-- MESSAGES MODAL (customer) -->
+<div class="overlay" id="messagesOverlay">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('messagesOverlay')">&times;</button>
+    <h3>Message the workshop</h3>
+    <p class="sub">Ask about an order, a personalisation, or anything else. Replies show up here next time you log in on this device.</p>
+    <div class="msg-thread-wrap" id="customerThreadMessages"></div>
+    <div class="msg-send-row">
+      <textarea id="customerMessageText" placeholder="Write a message…"></textarea>
+      <button class="btn btn-primary btn-small" onclick="sendCustomerMessage()">Send</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN PRODUCT FORM MODAL -->
+<div class="overlay" id="productFormOverlay">
+  <div class="modal wide">
+    <button class="modal-close" onclick="closeModal('productFormOverlay')">&times;</button>
+    <h3 id="productFormTitle">New listing</h3>
+    <p class="sub">Set pricing, discounts and personalisation options for this listing.</p>
+    <form onsubmit="return saveProductForm(event)">
+      <input type="hidden" id="pfId">
+      <div class="form-grid-2">
+        <div class="field">
+          <label>Product name</label>
+          <input type="text" id="pfName" required>
+        </div>
+        <div class="field">
+          <label>Category</label>
+          <select id="pfCategory" required>
+            <option value="candles">Candles</option>
+            <option value="clocks">Wooden Clocks</option>
+            <option value="frames">Personalised Engraved Frames</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label>Description</label>
+        <textarea id="pfDesc" placeholder="Short description shown on the listing"></textarea>
+      </div>
+      <div class="form-grid-2">
+        <div class="field">
+          <label>Price (£)</label>
+          <input type="number" id="pfPrice" step="0.01" min="0" required>
+        </div>
+        <div class="field">
+          <label>Discount % <span class="hint">(0 = none)</span></label>
+          <input type="number" id="pfDiscount" min="0" max="90" value="0">
+        </div>
+      </div>
+      <div class="field">
+        <label>Stock quantity</label>
+        <input type="number" id="pfStock" min="0" value="10">
+      </div>
+      <div class="field">
+        <label class="checkbox-row"><input type="checkbox" id="pfPersonalise" onchange="toggleLinesField()"> This item can be personalised / engraved</label>
+      </div>
+      <div class="field" id="pfLinesWrap" style="display:none;">
+        <label>Max personalisation lines <span class="hint">(how many lines of text the customer can enter)</span></label>
+        <input type="number" id="pfLines" min="1" max="10" value="1">
+      </div>
+      <button class="btn btn-primary" type="submit" style="width:100%;">Save listing</button>
+    </form>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ---------------------------------------------------------
+   DATA LAYER — localStorage only. This is a front-end demo:
+   there is no real server, so this is NOT secure for a real
+   business (passwords are only lightly obscured, not hashed
+   with a proper algorithm, and anyone with browser devtools
+   could read the stored data on their own device). Orders and
+   messages saved here live only in this browser, on this
+   device — they will not appear for the admin (or the
+   customer) on a different device, and they will be lost if
+   this browser's storage is cleared. Swap this layer for a
+   real backend + database + auth provider before taking real
+   payments, real customer data, or relying on this for actual
+   order/message delivery.
+--------------------------------------------------------- */
+const LS_PRODUCTS = 'hm_products';
+const LS_USERS = 'hm_users';
+const LS_SESSION = 'hm_session';
+const LS_CART = 'hm_cart';
+const LS_ORDERS = 'hm_orders';
+const LS_MESSAGES = 'hm_messages';
+
+function obscure(pw){ return btoa(unescape(encodeURIComponent('hm::' + pw))); }
+
+const CATEGORY_LABEL = { candles:'Candles', clocks:'Wooden Clocks', frames:'Engraved Frames' };
+const CATEGORY_ICON = {
+  candles:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2c1.5 2 3 3.6 3 6a3 3 0 1 1-6 0c0-2.4 1.5-4 3-6z"/><rect x="9" y="10" width="6" height="10" rx="1"/></svg>',
+  clocks:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>',
+  frames:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="4" width="16" height="16" rx="1.5"/><rect x="8" y="8" width="8" height="8" rx="1"/></svg>'
+};
+const ORDER_STATUSES = ['Placed','Processing','Shipped','Delivered'];
+
+function seedProducts(){
+  return [
+    {id:'p1',name:'Amber & Cedarwood Candle',category:'candles',price:18,discount:0,stock:34,personalise:false,lines:0,
+      desc:'Hand-poured soy wax in a reusable glass jar. Approx. 40 hour burn.'},
+    {id:'p2',name:'Fireside Spice Candle',category:'candles',price:16,discount:15,stock:20,personalise:false,lines:0,
+      desc:'A warm blend of clove, orange peel and smoked vanilla.'},
+    {id:'p3',name:'Engraved Name Candle',category:'candles',price:22,discount:0,stock:15,personalise:true,lines:1,
+      desc:'Our classic jar candle with a name or short message engraved into the glass.'},
+    {id:'p4',name:'Walnut Wall Clock',category:'clocks',price:74,discount:0,stock:9,personalise:false,lines:0,
+      desc:'Solid walnut face with brushed brass hands, silent sweep movement.'},
+    {id:'p5',name:'Oak Mantel Clock',category:'clocks',price:58,discount:10,stock:12,personalise:false,lines:0,
+      desc:'Compact oak mantel clock, hand-finished with a natural oil.'},
+    {id:'p6',name:'Engraved Anniversary Clock',category:'clocks',price:89,discount:0,stock:6,personalise:true,lines:2,
+      desc:'A walnut wall clock with a message engraved into the base — a lasting anniversary piece.'},
+    {id:'p7',name:'Oak Photo Frame, 6x4"',category:'frames',price:24,discount:0,stock:25,personalise:true,lines:1,
+      desc:'Solid oak frame with a single engraved line along the base.'},
+    {id:'p8',name:'Walnut Family Frame, 8x10"',category:'frames',price:36,discount:20,stock:10,personalise:true,lines:3,
+      desc:'A larger walnut frame with space for up to three engraved lines — names, dates, a short quote.'},
+    {id:'p9',name:'Pet Memorial Frame',category:'frames',price:29,discount:0,stock:14,personalise:true,lines:2,
+      desc:'A gentle keepsake frame with two engraved lines for a name and dates.'}
+  ];
+}
+
+function loadProducts(){
+  let raw = localStorage.getItem(LS_PRODUCTS);
+  if(!raw){ const seeded = seedProducts(); localStorage.setItem(LS_PRODUCTS, JSON.stringify(seeded)); return seeded; }
+  try{ return JSON.parse(raw); }catch(e){ return seedProducts(); }
+}
+function saveProducts(list){ localStorage.setItem(LS_PRODUCTS, JSON.stringify(list)); }
+
+function loadUsers(){
+  let raw = localStorage.getItem(LS_USERS);
+  if(!raw){
+    const seeded = [{ username:'user123', name:'Store Admin', password:obscure('123'), role:'admin' }];
+    localStorage.setItem(LS_USERS, JSON.stringify(seeded));
+    return seeded;
+  }
+  try{ return JSON.parse(raw); }catch(e){ return []; }
+}
+function saveUsers(list){ localStorage.setItem(LS_USERS, JSON.stringify(list)); }
+
+function getSession(){ return localStorage.getItem(LS_SESSION); }
+function setSession(username){ if(username) localStorage.setItem(LS_SESSION, username); else localStorage.removeItem(LS_SESSION); }
+
+function loadCart(){ try{ return JSON.parse(localStorage.getItem(LS_CART) || '[]'); }catch(e){ return []; } }
+function saveCart(cart){ localStorage.setItem(LS_CART, JSON.stringify(cart)); }
+
+function loadOrders(){ try{ return JSON.parse(localStorage.getItem(LS_ORDERS) || '[]'); }catch(e){ return []; } }
+function saveOrders(list){ localStorage.setItem(LS_ORDERS, JSON.stringify(list)); }
+
+function loadMessages(){ try{ return JSON.parse(localStorage.getItem(LS_MESSAGES) || '[]'); }catch(e){ return []; } }
+function saveMessages(list){ localStorage.setItem(LS_MESSAGES, JSON.stringify(list)); }
+
+let PRODUCTS = loadProducts();
+let USERS = loadUsers();
+let CART = loadCart();
+let ORDERS = loadOrders();
+let MESSAGES = loadMessages();
+let ACTIVE_FILTER = 'all';
+let PENDING_PRODUCT_ID = null;
+let ACTIVE_ADMIN_TAB = 'listings';
+let ACTIVE_ADMIN_THREAD = null;
+
+/* ---------------------------------------------------------
+   RENDER: account area
+--------------------------------------------------------- */
+function currentUser(){
+  const uname = getSession();
+  if(!uname) return null;
+  return USERS.find(u => u.username === uname) || null;
+}
+
+function renderAccountArea(){
+  const el = document.getElementById('accountArea');
+  const user = currentUser();
+  if(!user){
+    el.innerHTML = `
+      <button class="btn btn-ghost btn-small" onclick="openModal('loginOverlay')">Log in</button>
+      <button class="btn btn-primary btn-small" onclick="openModal('signupOverlay')">Sign up</button>
+    `;
+    document.getElementById('adminSection').style.display = 'none';
+    document.getElementById('messagesIconBtn').style.display = 'none';
+  } else {
+    const initial = user.name ? user.name.trim().charAt(0).toUpperCase() : user.username.charAt(0).toUpperCase();
+    el.innerHTML = `
+      <div class="account-strip">
+        <div class="avatar">${initial}</div>
+        <div>
+          <div style="font-weight:600;">${escapeHtml(user.name || user.username)}</div>
+          ${user.role === 'admin' ? '<div class="pill" style="padding:2px 8px;">Admin</div>' : ''}
+        </div>
+        <button class="btn btn-ghost btn-small" onclick="logout()">Log out</button>
+      </div>
+    `;
+    document.getElementById('adminSection').style.display = user.role === 'admin' ? 'block' : 'none';
+    document.getElementById('messagesIconBtn').style.display = user.role === 'admin' ? 'none' : 'flex';
+  }
+  if(user && user.role === 'admin'){
+    renderAdminTable();
+    renderAdminOrders();
+    renderAdminThreadList();
+  }
+  updateMessagesBadge();
+}
+
+function logout(){
+  setSession(null);
+  showToast('Logged out.');
+  renderAccountArea();
+}
+
+/* ---------------------------------------------------------
+   AUTH
+--------------------------------------------------------- */
+function handleLogin(e){
+  e.preventDefault();
+  const username = document.getElementById('loginUsername').value.trim();
+  const password = document.getElementById('loginPassword').value;
+  const errEl = document.getElementById('loginError');
+  const user = USERS.find(u => u.username.toLowerCase() === username.toLowerCase());
+  if(!user || user.password !== obscure(password)){
+    errEl.textContent = 'Incorrect username or password.';
+    errEl.classList.add('show');
+    return false;
+  }
+  errEl.classList.remove('show');
+  setSession(user.username);
+  closeModal('loginOverlay');
+  document.getElementById('loginUsername').value='';
+  document.getElementById('loginPassword').value='';
+  renderAccountArea();
+  showToast(`Welcome back, ${user.name || user.username}.`);
+  return false;
+}
+
+function handleSignup(e){
+  e.preventDefault();
+  const name = document.getElementById('signupName').value.trim();
+  const username = document.getElementById('signupUsername').value.trim();
+  const password = document.getElementById('signupPassword').value;
+  const errEl = document.getElementById('signupError');
+
+  if(USERS.some(u => u.username.toLowerCase() === username.toLowerCase())){
+    errEl.textContent = 'That username is already taken.';
+    errEl.classList.add('show');
+    return false;
+  }
+  errEl.classList.remove('show');
+  const newUser = { username, name, password:obscure(password), role:'customer' };
+  USERS.push(newUser);
+  saveUsers(USERS);
+  setSession(username);
+  closeModal('signupOverlay');
+  e.target.reset();
+  renderAccountArea();
+  showToast(`Account created — welcome, ${name || username}.`);
+  return false;
+}
+
+/* ---------------------------------------------------------
+   RENDER: shop / categories
+--------------------------------------------------------- */
+function renderCategoryCounts(){
+  document.getElementById('countCandles').textContent = PRODUCTS.filter(p=>p.category==='candles').length + ' pieces';
+  document.getElementById('countClocks').textContent = PRODUCTS.filter(p=>p.category==='clocks').length + ' pieces';
+  document.getElementById('countFrames').textContent = PRODUCTS.filter(p=>p.category==='frames').length + ' pieces';
+}
+
+function renderFilterBar(){
+  const bar = document.getElementById('filterBar');
+  const cats = [['all','All'],['candles','Candles'],['clocks','Wooden Clocks'],['frames','Engraved Frames']];
+  bar.innerHTML = cats.map(([key,label]) =>
+    `<button class="filter-btn ${ACTIVE_FILTER===key?'active':''}" onclick="showSection('${key}')">${label}</button>`
+  ).join('');
+}
+
+function showSection(key){
+  ACTIVE_FILTER = key;
+  renderFilterBar();
+  renderProducts();
+  document.getElementById('shop').scrollIntoView({behavior:'smooth'});
+}
+
+function priceHtml(p){
+  if(p.discount > 0){
+    const now = (p.price * (1 - p.discount/100)).toFixed(2);
+    return `<div class="price-row"><span class="price-now">£${now}</span><span class="price-was">£${p.price.toFixed(2)}</span></div>`;
+  }
+  return `<div class="price-row"><span class="price-now">£${p.price.toFixed(2)}</span></div>`;
+}
+
+function renderProducts(){
+  const grid = document.getElementById('productGrid');
+  const list = PRODUCTS.filter(p => ACTIVE_FILTER === 'all' || p.category === ACTIVE_FILTER);
+  if(list.length === 0){
+    grid.innerHTML = `<div class="empty-note">No listings in this category yet.</div>`;
+    return;
+  }
+  grid.innerHTML = list.map(p => `
+    <div class="product-card">
+      <div class="product-media">
+        ${p.discount > 0 ? `<span class="discount-flag">-${p.discount}%</span>` : ''}
+        <span class="stock-flag">${p.stock > 0 ? p.stock + ' in stock' : 'Out of stock'}</span>
+        ${CATEGORY_ICON[p.category]}
+      </div>
+      <div class="product-body">
+        <span class="product-cat">${CATEGORY_LABEL[p.category]}</span>
+        <h4 class="product-name">${escapeHtml(p.name)}</h4>
+        <p class="product-desc">${escapeHtml(p.desc || '')}</p>
+        ${priceHtml(p)}
+        ${p.personalise ? `<span class="personalise-note">✎ Personalise — up to ${p.lines} line${p.lines>1?'s':''}</span>` : ''}
+        <div class="product-actions">
+          <button class="btn btn-primary btn-small" ${p.stock<=0?'disabled':''} onclick="openAddModal('${p.id}')">Add to basket</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+/* ---------------------------------------------------------
+   CART
+--------------------------------------------------------- */
+function updateCartBadge(){
+  const count = CART.reduce((sum,i)=>sum+i.qty,0);
+  const badge = document.getElementById('cartBadge');
+  if(count > 0){ badge.style.display='flex'; badge.textContent = count; }
+  else { badge.style.display='none'; }
+}
+
+function openAddModal(id){
+  const p = PRODUCTS.find(x=>x.id===id);
+  if(!p) return;
+  PENDING_PRODUCT_ID = id;
+  document.getElementById('addTitle').textContent = p.name;
+  document.getElementById('addSub').textContent = p.discount>0
+    ? `£${(p.price*(1-p.discount/100)).toFixed(2)} each (was £${p.price.toFixed(2)})`
+    : `£${p.price.toFixed(2)} each`;
+  const fieldsEl = document.getElementById('addPersonaliseFields');
+  if(p.personalise){
+    let inputs = '';
+    for(let i=1;i<=p.lines;i++){
+      inputs += `<div class="field"><label>Engraving line ${i}</label><input type="text" class="personaliseLine" maxlength="40" placeholder="e.g. Est. 2024"></div>`;
+    }
+    fieldsEl.innerHTML = inputs;
+  } else {
+    fieldsEl.innerHTML = '';
+  }
+  document.getElementById('addQty').value = 1;
+  openModal('addOverlay');
+}
+
+function confirmAddToCart(){
+  const p = PRODUCTS.find(x=>x.id===PENDING_PRODUCT_ID);
+  if(!p) return;
+  const qty = Math.max(1, parseInt(document.getElementById('addQty').value) || 1);
+  const lines = Array.from(document.querySelectorAll('.personaliseLine')).map(i=>i.value.trim()).filter(Boolean);
+  CART.push({ productId:p.id, qty, lines, addedAt:Date.now() });
+  saveCart(CART);
+  updateCartBadge();
+  closeModal('addOverlay');
+  showToast('Added to basket.');
+}
+
+function renderCart(){
+  const wrap = document.getElementById('cartItems');
+  if(CART.length === 0){
+    wrap.innerHTML = `<div class="cart-empty">Your basket is empty.</div>`;
+    document.getElementById('cartTotal').textContent = '£0.00';
+    return;
+  }
+  let total = 0;
+  wrap.innerHTML = CART.map((item, idx) => {
+    const p = PRODUCTS.find(x=>x.id===item.productId);
+    if(!p) return '';
+    const unit = p.price * (1 - (p.discount||0)/100);
+    const lineTotal = unit * item.qty;
+    total += lineTotal;
+    return `
+      <div class="cart-item">
+        <div class="thumb">${CATEGORY_ICON[p.category]}</div>
+        <div class="ci-body">
+          <div class="ci-name">${escapeHtml(p.name)}</div>
+          ${item.lines && item.lines.length ? `<div class="ci-line">Engraving: ${item.lines.map(escapeHtml).join(' / ')}</div>` : ''}
+          <div class="ci-line">£${unit.toFixed(2)} × ${item.qty} = £${lineTotal.toFixed(2)}</div>
+          <button class="remove-link" onclick="removeCartItem(${idx})">Remove</button>
+        </div>
+      </div>
+    `;
+  }).join('');
+  document.getElementById('cartTotal').textContent = '£' + total.toFixed(2);
+}
+
+function removeCartItem(idx){
+  CART.splice(idx,1);
+  saveCart(CART);
+  updateCartBadge();
+  renderCart();
+}
+
+/* ---------------------------------------------------------
+   CHECKOUT — delivery details, then order creation
+--------------------------------------------------------- */
+function startCheckout(){
+  if(CART.length === 0){ showToast('Your basket is empty.'); return; }
+  const user = currentUser();
+  document.getElementById('delName').value = user ? (user.name || '') : '';
+  document.getElementById('delAddr1').value = '';
+  document.getElementById('delAddr2').value = '';
+  document.getElementById('delCity').value = '';
+  document.getElementById('delPostcode').value = '';
+  document.getElementById('delCountry').value = '';
+  document.getElementById('delPhone').value = '';
+  document.getElementById('delNotes').value = '';
+  document.getElementById('deliveryError').classList.remove('show');
+  openModal('deliveryOverlay');
+}
+
+function submitDelivery(e){
+  e.preventDefault();
+  if(CART.length === 0){
+    document.getElementById('deliveryError').textContent = 'Your basket is empty.';
+    document.getElementById('deliveryError').classList.add('show');
+    return false;
+  }
+  const delivery = {
+    name: document.getElementById('delName').value.trim(),
+    address1: document.getElementById('delAddr1').value.trim(),
+    address2: document.getElementById('delAddr2').value.trim(),
+    city: document.getElementById('delCity').value.trim(),
+    postcode: document.getElementById('delPostcode').value.trim(),
+    country: document.getElementById('delCountry').value.trim(),
+    phone: document.getElementById('delPhone').value.trim(),
+    notes: document.getElementById('delNotes').value.trim()
+  };
+
+  const user = currentUser();
+  let total = 0;
+  const items = CART.map(item => {
+    const p = PRODUCTS.find(x=>x.id===item.productId);
+    if(!p) return null;
+    const unit = p.price * (1 - (p.discount||0)/100);
+    const lineTotal = unit * item.qty;
+    total += lineTotal;
+    return { productId:p.id, name:p.name, unit, qty:item.qty, lineTotal, lines:item.lines || [] };
+  }).filter(Boolean);
+
+  const order = {
+    id: 'o' + Date.now(),
+    orderNo: 'HM-' + Math.floor(100000 + Math.random()*900000),
+    username: user ? user.username : null,
+    customerName: delivery.name,
+    items,
+    total,
+    delivery,
+    status: 'Placed',
+    createdAt: Date.now()
+  };
+  ORDERS.push(order);
+  saveOrders(ORDERS);
+
+  CART = [];
+  saveCart(CART);
+  updateCartBadge();
+  renderCart();
+  closeModal('deliveryOverlay');
+  closeModal('cartOverlay');
+  renderAdminOrders();
+  showToast(`Order placed — confirmation ${order.orderNo} (demo only, no payment taken).`);
+  return false;
+}
+
+/* ---------------------------------------------------------
+   ADMIN — listings
+--------------------------------------------------------- */
+function renderAdminTable(){
+  const body = document.getElementById('adminTableBody');
+  document.getElementById('adminProductCount').textContent = PRODUCTS.length + ' listings';
+  body.innerHTML = PRODUCTS.map(p => `
+    <tr>
+      <td>${escapeHtml(p.name)}</td>
+      <td>${CATEGORY_LABEL[p.category]}</td>
+      <td>£${p.price.toFixed(2)}</td>
+      <td>${p.discount > 0 ? `<span class="mini-tag">-${p.discount}%</span>` : '—'}</td>
+      <td>${p.personalise ? `Yes · up to ${p.lines} line${p.lines>1?'s':''}` : 'No'}</td>
+      <td>${p.stock}</td>
+      <td style="white-space:nowrap;">
+        <button class="btn btn-ghost btn-small" onclick="openProductForm('${p.id}')">Edit</button>
+        <button class="btn btn-danger btn-small" onclick="deleteProduct('${p.id}')">Delete</button>
+      </td>
+    </tr>
+  `).join('');
+}
+
+function toggleLinesField(){
+  document.getElementById('pfLinesWrap').style.display = document.getElementById('pfPersonalise').checked ? 'block' : 'none';
+}
+
+function openProductForm(id){
+  const user = currentUser();
+  if(!user || user.role !== 'admin'){ showToast('Admin access required.'); return; }
+  document.getElementById('productFormTitle').textContent = id ? 'Edit listing' : 'New listing';
+  if(id){
+    const p = PRODUCTS.find(x=>x.id===id);
+    document.getElementById('pfId').value = p.id;
+    document.getElementById('pfName').value = p.name;
+    document.getElementById('pfCategory').value = p.category;
+    document.getElementById('pfDesc').value = p.desc || '';
+    document.getElementById('pfPrice').value = p.price;
+    document.getElementById('pfDiscount').value = p.discount;
+    document.getElementById('pfStock').value = p.stock;
+    document.getElementById('pfPersonalise').checked = p.personalise;
+    document.getElementById('pfLines').value = p.lines || 1;
+  } else {
+    document.getElementById('pfId').value = '';
+    document.getElementById('pfName').value = '';
+    document.getElementById('pfCategory').value = 'candles';
+    document.getElementById('pfDesc').value = '';
+    document.getElementById('pfPrice').value = '';
+    document.getElementById('pfDiscount').value = 0;
+    document.getElementById('pfStock').value = 10;
+    document.getElementById('pfPersonalise').checked = false;
+    document.getElementById('pfLines').value = 1;
+  }
+  toggleLinesField();
+  openModal('productFormOverlay');
+}
+
+function saveProductForm(e){
+  e.preventDefault();
+  const id = document.getElementById('pfId').value;
+  const data = {
+    name: document.getElementById('pfName').value.trim(),
+    category: document.getElementById('pfCategory').value,
+    desc: document.getElementById('pfDesc').value.trim(),
+    price: parseFloat(document.getElementById('pfPrice').value) || 0,
+    discount: parseInt(document.getElementById('pfDiscount').value) || 0,
+    stock: parseInt(document.getElementById('pfStock').value) || 0,
+    personalise: document.getElementById('pfPersonalise').checked,
+    lines: document.getElementById('pfPersonalise').checked ? (parseInt(document.getElementById('pfLines').value) || 1) : 0
+  };
+  if(id){
+    const idx = PRODUCTS.findIndex(p=>p.id===id);
+    if(idx > -1) PRODUCTS[idx] = { ...PRODUCTS[idx], ...data };
+  } else {
+    data.id = 'p' + Date.now();
+    PRODUCTS.push(data);
+  }
+  saveProducts(PRODUCTS);
+  closeModal('productFormOverlay');
+  renderAll();
+  showToast('Listing saved.');
+  return false;
+}
+
+function deleteProduct(id){
+  if(!confirm('Delete this listing? This cannot be undone.')) return;
+  PRODUCTS = PRODUCTS.filter(p=>p.id!==id);
+  saveProducts(PRODUCTS);
+  renderAll();
+  showToast('Listing deleted.');
+}
+
+/* ---------------------------------------------------------
+   ADMIN — tabs
+--------------------------------------------------------- */
+function switchAdminTab(tab){
+  ACTIVE_ADMIN_TAB = tab;
+  document.querySelectorAll('.admin-tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+  document.getElementById('adminTabListings').classList.toggle('active', tab==='listings');
+  document.getElementById('adminTabOrders').classList.toggle('active', tab==='orders');
+  document.getElementById('adminTabMessages').classList.toggle('active', tab==='messages');
+}
+
+/* ---------------------------------------------------------
+   ADMIN — orders
+--------------------------------------------------------- */
+function renderAdminOrders(){
+  const body = document.getElementById('adminOrdersBody');
+  const badge = document.getElementById('ordersTabBadge');
+  document.getElementById('adminOrderCount').textContent = ORDERS.length + ' orders';
+  if(ORDERS.length > 0){ badge.style.display='inline-flex'; badge.textContent = ORDERS.length; }
+  else { badge.style.display='none'; }
+
+  const sorted = [...ORDERS].sort((a,b)=>b.createdAt-a.createdAt);
+  body.innerHTML = sorted.map(o => {
+    const itemsSummary = o.items.map(i => `${i.qty}× ${escapeHtml(i.name)}`).join('<br>');
+    const addr = [o.delivery.address1, o.delivery.address2, o.delivery.city, o.delivery.postcode, o.delivery.country]
+      .filter(Boolean).map(escapeHtml).join(', ');
+    const statusOptions = ORDER_STATUSES.map(s => `<option value="${s}" ${o.status===s?'selected':''}>${s}</option>`).join('');
+    return `
+      <tr>
+        <td>${o.orderNo}</td>
+        <td>${escapeHtml(o.customerName || o.username || 'Guest')}</td>
+        <td class="order-items-list">${itemsSummary}</td>
+        <td class="order-addr">${addr}</td>
+        <td>£${o.total.toFixed(2)}</td>
+        <td>${new Date(o.createdAt).toLocaleDateString()}</td>
+        <td>
+          <select class="status-select" onchange="updateOrderStatus('${o.id}', this.value)">${statusOptions}</select>
+        </td>
+      </tr>
+    `;
+  }).join('') || `<tr><td colspan="7" style="text-align:center;color:#c9b691;">No orders yet.</td></tr>`;
+}
+
+function updateOrderStatus(orderId, status){
+  const idx = ORDERS.findIndex(o=>o.id===orderId);
+  if(idx > -1){
+    ORDERS[idx].status = status;
+    saveOrders(ORDERS);
+    showToast('Order status updated.');
+  }
+}
+
+/* ---------------------------------------------------------
+   MESSAGING — customer <-> admin
+   Each message: { id, customerUsername, customerName, sender:'customer'|'admin', body, createdAt, readByAdmin, readByCustomer }
+--------------------------------------------------------- */
+function updateMessagesBadge(){
+  const user = currentUser();
+  const badge = document.getElementById('messagesBadge');
+  if(!user || user.role === 'admin'){ badge.style.display='none'; return; }
+  const unread = MESSAGES.filter(m => m.customerUsername===user.username && m.sender==='admin' && !m.readByCustomer).length;
+  if(unread>0){ badge.style.display='flex'; badge.textContent = unread; }
+  else { badge.style.display='none'; }
+}
+
+function openMessages(){
+  const user = currentUser();
+  if(!user){ showToast('Log in to message the workshop.'); openModal('loginOverlay'); return; }
+  if(user.role === 'admin'){ showToast('Use the Messages tab in your admin dashboard.'); return; }
+  renderCustomerThread(user);
+  MESSAGES.forEach(m => { if(m.customerUsername===user.username && m.sender==='admin') m.readByCustomer = true; });
+  saveMessages(MESSAGES);
+  updateMessagesBadge();
+  openModal('messagesOverlay');
+}
+
+function renderCustomerThread(user){
+  const wrap = document.getElementById('customerThreadMessages');
+  const thread = MESSAGES.filter(m => m.customerUsername === user.username).sort((a,b)=>a.createdAt-b.createdAt);
+  if(thread.length === 0){
+    wrap.innerHTML = `<div class="msg-empty">No messages yet — say hello!</div>`;
+    return;
+  }
+  wrap.innerHTML = thread.map(m => `
+    <div class="msg-bubble ${m.sender==='admin' ? 'msg-from-admin' : 'msg-from-customer'}">
+      ${escapeHtml(m.body)}
+      <div class="m-meta">${m.sender==='admin' ? 'Workshop' : 'You'} · ${new Date(m.createdAt).toLocaleString()}</div>
+    </div>
+  `).join('');
+  wrap.scrollTop = wrap.scrollHeight;
+}
+
+function sendCustomerMessage(){
+  const user = currentUser();
+  if(!user) return;
+  const textEl = document.getElementById('customerMessageText');
+  const body = textEl.value.trim();
+  if(!body) return;
+  MESSAGES.push({
+    id:'m'+Date.now(), customerUsername:user.username, customerName:user.name || user.username,
+    sender:'customer', body, createdAt:Date.now(), readByAdmin:false, readByCustomer:true
+  });
+  saveMessages(MESSAGES);
+  textEl.value = '';
+  renderCustomerThread(user);
+  renderAdminThreadList();
+  if(ACTIVE_ADMIN_THREAD === user.username) renderAdminThread(user.username);
+  showToast('Message sent.');
+}
+
+function renderAdminThreadList(){
+  const listEl = document.getElementById('adminThreadList');
+  const threadBadge = document.getElementById('messagesTabBadge');
+  const countEl = document.getElementById('adminThreadCount');
+  if(!listEl) return;
+
+  const customers = {};
+  MESSAGES.forEach(m => {
+    if(!customers[m.customerUsername]) customers[m.customerUsername] = { name:m.customerName, messages:[] };
+    customers[m.customerUsername].messages.push(m);
+  });
+  const usernames = Object.keys(customers);
+  countEl.textContent = usernames.length + ' conversation' + (usernames.length===1?'':'s');
+
+  const totalUnread = MESSAGES.filter(m => m.sender==='customer' && !m.readByAdmin).length;
+  if(totalUnread>0){ threadBadge.style.display='inline-flex'; threadBadge.textContent = totalUnread; }
+  else { threadBadge.style.display='none'; }
+
+  if(usernames.length === 0){
+    listEl.innerHTML = `<div class="msg-empty" style="padding:20px 14px;">No customer messages yet.</div>`;
+    return;
+  }
+
+  listEl.innerHTML = usernames.map(uname => {
+    const data = customers[uname];
+    const sorted = data.messages.sort((a,b)=>b.createdAt-a.createdAt);
+    const last = sorted[0];
+    const unread = data.messages.filter(m=>m.sender==='customer' && !m.readByAdmin).length;
+    return `
+      <div class="thread-row ${ACTIVE_ADMIN_THREAD===uname?'active':''}" onclick="renderAdminThread('${uname}')">
+        <div>
+          <div class="t-name">${escapeHtml(data.name || uname)}</div>
+          <div class="t-preview">${escapeHtml(last.body)}</div>
+        </div>
+        ${unread>0 ? `<span class="badge" style="position:static;">${unread}</span>` : ''}
+      </div>
+    `;
+  }).join('');
+}
+
+function renderAdminThread(uname){
+  ACTIVE_ADMIN_THREAD = uname;
+  renderAdminThreadList();
+  const headerEl = document.getElementById('adminThreadHeader');
+  const wrap = document.getElementById('adminThreadMessages');
+  const replyRow = document.getElementById('adminReplyRow');
+  const thread = MESSAGES.filter(m => m.customerUsername === uname).sort((a,b)=>a.createdAt-b.createdAt);
+  const custName = thread.length ? thread[0].customerName : uname;
+  headerEl.textContent = 'Conversation with ' + (custName || uname);
+  replyRow.style.display = 'flex';
+
+  wrap.innerHTML = thread.map(m => `
+    <div class="msg-bubble ${m.sender==='admin' ? 'msg-from-admin' : 'msg-from-customer'}">
+      ${escapeHtml(m.body)}
+      <div class="m-meta">${m.sender==='admin' ? 'You' : escapeHtml(custName || uname)} · ${new Date(m.createdAt).toLocaleString()}</div>
+    </div>
+  `).join('');
+  wrap.scrollTop = wrap.scrollHeight;
+
+  MESSAGES.forEach(m => { if(m.customerUsername===uname && m.sender==='customer') m.readByAdmin = true; });
+  saveMessages(MESSAGES);
+  renderAdminThreadList();
+}
+
+function sendAdminReply(){
+  if(!ACTIVE_ADMIN_THREAD) return;
+  const textEl = document.getElementById('adminReplyText');
+  const body = textEl.value.trim();
+  if(!body) return;
+  const thread = MESSAGES.filter(m => m.customerUsername === ACTIVE_ADMIN_THREAD);
+  const custName = thread.length ? thread[0].customerName : ACTIVE_ADMIN_THREAD;
+  MESSAGES.push({
+    id:'m'+Date.now(), customerUsername:ACTIVE_ADMIN_THREAD, customerName:custName,
+    sender:'admin', body, createdAt:Date.now(), readByAdmin:true, readByCustomer:false
+  });
+  saveMessages(MESSAGES);
+  textEl.value = '';
+  renderAdminThread(ACTIVE_ADMIN_THREAD);
+  showToast('Reply sent.');
+}
+
+/* ---------------------------------------------------------
+   MODAL HELPERS + TOAST
+--------------------------------------------------------- */
+function openModal(id){ document.getElementById(id).classList.add('open'); }
+function closeModal(id){ document.getElementById(id).classList.remove('open'); }
+function switchModal(fromId,toId){ closeModal(fromId); openModal(toId); }
+document.querySelectorAll('.overlay').forEach(ov=>{
+  ov.addEventListener('click', (e)=>{ if(e.target===ov) closeModal(ov.id); });
+});
+document.addEventListener('keydown', (e)=>{
+  if(e.key==='Escape') document.querySelectorAll('.overlay.open').forEach(ov=>closeModal(ov.id));
+});
+
+let toastTimer;
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>t.classList.remove('show'), 3200);
+}
+
+function escapeHtml(str){
+  return String(str).replace(/[&<>"']/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s]));
+}
+
+/* ---------------------------------------------------------
+   INIT
+--------------------------------------------------------- */
+function renderAll(){
+  renderCategoryCounts();
+  renderFilterBar();
+  renderProducts();
+  renderAccountArea();
+  updateCartBadge();
+  renderCart();
+}
+document.getElementById('year').textContent = new Date().getFullYear();
+renderAll();
+
+// Wire cart modal open to refresh contents
+document.querySelector('[title="Cart"]').addEventListener('click', renderCart);
+</script>
+</body>
+</html>
