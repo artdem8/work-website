@@ -8,6 +8,7 @@ import { pool } from './db.js';
 const app = express();
 app.use(cors({ origin: process.env.CORS_ORIGIN || '*' }));
 app.use(express.json());
+app.use(express.static('public')); // Replace 'public' with the folder name where your HTML files are stored if it's different
 
 const JWT_SECRET = process.env.JWT_SECRET;
 if (!JWT_SECRET) {
