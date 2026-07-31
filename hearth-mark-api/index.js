@@ -274,6 +274,10 @@ function toMessageJson(m) {
   };
 }
 
+app.get('/', (req, res) => {
+  res.send('Hearth & Mark API is running successfully!');
+});
+
 /* ---------------- start ---------------- */
 
 const PORT = process.env.PORT || 4000;
