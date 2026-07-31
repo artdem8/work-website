@@ -8,7 +8,7 @@ import { pool } from './db.js';
 const app = express();
 app.use(cors({ origin: process.env.CORS_ORIGIN || '*' }));
 app.use(express.json());
-app.use(express.static('public')); // Replace 'public' with the folder name where your HTML files are stored if it's different
+app.use(express.static('public')); // Change 'public' to your actual frontend folder name if it's different (e.g., 'dist', 'build')
 
 const JWT_SECRET = process.env.JWT_SECRET;
 if (!JWT_SECRET) {
@@ -144,7 +144,6 @@ app.post('/api/orders', optionalAuth, async (req, res) => {
   try {
     await conn.beginTransaction();
 
-    // re-price from the database — never trust prices sent by the client
     let total = 0;
     const priced = [];
     for (const item of items) {
@@ -274,10 +273,6 @@ function toMessageJson(m) {
     readByAdmin: !!m.read_by_admin, readByCustomer: !!m.read_by_customer
   };
 }
-
-app.get('/', (req, res) => {
-  res.send('Hearth & Mark API is running successfully!');
-});
 
 /* ---------------- start ---------------- */
 
